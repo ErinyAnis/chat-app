@@ -33,6 +33,7 @@ const Chat = () => {
     if (currentUser) {
       socket.current = io(host, {
         transports: ["websocket", "polling"],
+        reconnection: false,
       });
       socket.current.emit("add-user", currentUser._id);
     }
