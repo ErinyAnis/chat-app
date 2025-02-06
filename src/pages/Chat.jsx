@@ -31,14 +31,9 @@ const Chat = () => {
 
   useEffect(() => {
     if (currentUser) {
-      socket.current = io(host, {
-        transports: ["websocket", "polling"],
-      });
+      socket.current = io(host);
       socket.current.emit("add-user", currentUser._id);
     }
-    return () => {
-      if (socket.current) socket.current.disconnect(); // Clean up on unmount
-    };
   }, [currentUser]);
 
   const changeCurrentChat = (index, contact) => {
@@ -66,11 +61,7 @@ const Chat = () => {
           {currentChat === null ? (
             <Welcome currentUser={currentUser} />
           ) : (
-            <ChatBox
-              currentChat={currentChat}
-              currentUser={currentUser}
-              socket={socket}
-            />
+            <ChatBox currentChat={currentChat} currentUser={currentUser} socket={socket} />
           )}
         </div>
         {currentChat && (
@@ -81,7 +72,7 @@ const Chat = () => {
       </Container>
     </div>
   ) : (
-    <Container>Loading...</Container>
+    <div>Loading...</div>
   );
 };
 
