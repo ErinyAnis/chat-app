@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
 
 const Chat = () => {
-  const socket = useRef();
+  const socket = useRef(null);
   const navigate = useNavigate();
 
   const [currentUser, setCurrentUser] = useState(null);
@@ -29,12 +29,32 @@ const Chat = () => {
     checkUser();
   }, []);
 
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     socket.current = io(host);
+  //     socket.current.emit("add-user", currentUser._id);
+  //   }
+  // }, [currentUser]);
+
   useEffect(() => {
     if (currentUser) {
-      socket.current = io(host);
+      socket.current = io(host, { transports: ["websocket"] });
       socket.current.emit("add-user", currentUser._id);
     }
+    return () => {
+      socket.current.disconnect();
+    };
   }, [currentUser]);
+
+  useEffect(() => {
+    if (socket.current) {
+      socket.current.on("connect", () => console.log("Connected to server!"));
+      socket.current.on("disconnect", () => console.log("Disconnected!"));
+      socket.current.on("connect_error", (err) =>
+        console.error("Connection Error:", err)
+      );
+    }
+  }, []);
 
   const changeCurrentChat = (index, contact) => {
     setCurrentSelected(index);
@@ -61,7 +81,11 @@ const Chat = () => {
           {currentChat === null ? (
             <Welcome currentUser={currentUser} />
           ) : (
-            <ChatBox currentChat={currentChat} currentUser={currentUser} socket={socket} />
+            <ChatBox
+              currentChat={currentChat}
+              currentUser={currentUser}
+              socket={socket}
+            />
           )}
         </div>
         {currentChat && (
