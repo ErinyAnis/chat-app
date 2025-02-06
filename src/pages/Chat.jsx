@@ -37,9 +37,7 @@ const Chat = () => {
       });
       socket.current.emit("add-user", currentUser._id);
     }
-    return () => {
-      if (socket.current) socket.current.disconnect(); // Clean up on unmount
-    };
+
   }, [currentUser]);
 
   const changeCurrentChat = (index, contact) => {
