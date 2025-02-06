@@ -53,15 +53,22 @@ const ChatBox = ({ currentChat, currentUser, socket }) => {
         setArrivalMessage({ fromSelf: false, message: msg });
       });
     }
-  }, []);
+  }, [socket.current]);
+
+  // useEffect(() => {
+  //   arrivalMessage && setMessages((prev) => [...prev, arrivalMessage]);
+  // }, [arrivalMessage]);
 
   useEffect(() => {
-    arrivalMessage && setMessages((prev) => [...prev, arrivalMessage]);
+    if (arrivalMessage) {
+      setMessages((prev) => [...prev, arrivalMessage]);
+    }
   }, [arrivalMessage]);
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behaviour: "smooth" });
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
 
   return (
     <>
