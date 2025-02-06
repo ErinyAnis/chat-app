@@ -157,6 +157,7 @@ const ChatBox = ({ currentChat, currentUser, socket }) => {
                     </div>
                   </div> */}
 
+                  {/* reciever */}
                 </div>
               </div>
             </div>

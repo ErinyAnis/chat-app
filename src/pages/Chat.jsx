@@ -72,7 +72,7 @@ const Chat = () => {
       </Container>
     </div>
   ) : (
-    <div>Loading...</div>
+    <Container>Loading...</Container>
   );
 };
 
