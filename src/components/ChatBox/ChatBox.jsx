@@ -17,14 +17,12 @@ const ChatBox = ({ currentChat, currentUser, socket }) => {
 
   useEffect(() => {
     const getMessages = async () => {
-      try {
+      if (currentChat) {
         const response = await axios.post(getAllMessagesRoute, {
           from: currentUser._id,
           to: currentChat._id,
         });
         setMessages(response.data);
-      } catch (error) {
-        console.error("Error fetching messages:", error);
       }
     };
     getMessages();
@@ -53,14 +51,14 @@ const ChatBox = ({ currentChat, currentUser, socket }) => {
         setArrivalMessage({ fromSelf: false, message: msg });
       });
     }
-  }, [socket.current]);
+  }, []);
 
   useEffect(() => {
     arrivalMessage && setMessages((prev) => [...prev, arrivalMessage]);
   }, [arrivalMessage]);
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    scrollRef.current?.scrollIntoView({ behaviour: "smooth" });
   }, [messages]);
 
   return (
@@ -120,7 +118,7 @@ const ChatBox = ({ currentChat, currentUser, socket }) => {
                             {message.message}
                           </p>
                           <p className="text-xs text-gray-400 font-semibold">
-                            12:20
+                            2:30 pm
                           </p>
                         </div>
                         <div className="text-center">
@@ -158,6 +156,7 @@ const ChatBox = ({ currentChat, currentUser, socket }) => {
                       />
                     </div>
                   </div> */}
+
                 </div>
               </div>
             </div>

@@ -33,11 +33,12 @@ const Chat = () => {
     if (currentUser) {
       socket.current = io(host, {
         transports: ["websocket", "polling"],
-        reconnection: false,
       });
       socket.current.emit("add-user", currentUser._id);
     }
-
+    return () => {
+      if (socket.current) socket.current.disconnect(); // Clean up on unmount
+    };
   }, [currentUser]);
 
   const changeCurrentChat = (index, contact) => {
