@@ -120,10 +120,7 @@ const ChatBox = ({ currentChat, currentUser, socket }) => {
                             {message.message}
                           </p>
                           <p className="text-xs text-gray-400 font-semibold">
-                            {new Date(message.timestamp).toLocaleTimeString(
-                              [],
-                              { hour: "2-digit", minute: "2-digit" }
-                            )}
+                            12:20
                           </p>
                         </div>
                         <div className="text-center">
