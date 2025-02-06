@@ -40,10 +40,13 @@ const Chat = () => {
     if (currentUser) {
       socket.current = io(host, { transports: ["websocket"] });
       socket.current.emit("add-user", currentUser._id);
+
+      return () => {
+        if (socket.current) {
+          socket.current.disconnect();
+        }
+      };
     }
-    return () => {
-      socket.current.disconnect();
-    };
   }, [currentUser]);
 
   useEffect(() => {
