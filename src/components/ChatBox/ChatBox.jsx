@@ -157,29 +157,6 @@ const ChatBox = ({ currentChat, currentUser, socket }) => {
                     </div>
                   </div> */}
 
-                  {/* reciever */}
-                  {/* <div className="flex justify-end gap-3 flex-row-reverse mb-3 xl:mb-5">
-                    <div className="flex flex-col gap-1.5">
-                      <p className="bg-gray-100 py-2 px-2.5 max-h-36 md:max-w-80 xl:max-w-72 text-sm rounded-md">
-                        Reciever Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit.
-                      </p>
-                      <p className="text-xs text-gray-400 font-semibold">
-                        2:30 pm
-                      </p>
-                    </div>
-                    <div>
-                      <img
-                        src={
-                          currentChat.avatarImage
-                            ? currentChat.avatarImage
-                            : assets.profile_img
-                        }
-                        alt="profile_img"
-                        className="w-9 aspect-square rounded-full"
-                      />
-                    </div>
-                  </div> */}
                 </div>
               </div>
             </div>
