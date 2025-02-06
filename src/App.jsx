@@ -4,7 +4,7 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import Register from "./pages/Register";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import { ToastContainer } from "react-toastify";
 import HomePage from "./pages/Home";
 import Chat from "./pages/Chat";
