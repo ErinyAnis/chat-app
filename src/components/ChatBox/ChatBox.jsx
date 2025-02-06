@@ -17,12 +17,14 @@ const ChatBox = ({ currentChat, currentUser, socket }) => {
 
   useEffect(() => {
     const getMessages = async () => {
-      if (currentChat) {
+      try {
         const response = await axios.post(getAllMessagesRoute, {
           from: currentUser._id,
           to: currentChat._id,
         });
         setMessages(response.data);
+      } catch (error) {
+        console.error("Error fetching messages:", error);
       }
     };
     getMessages();
@@ -118,7 +120,10 @@ const ChatBox = ({ currentChat, currentUser, socket }) => {
                             {message.message}
                           </p>
                           <p className="text-xs text-gray-400 font-semibold">
-                            2:30 pm
+                            {new Date(message.timestamp).toLocaleTimeString(
+                              [],
+                              { hour: "2-digit", minute: "2-digit" }
+                            )}
                           </p>
                         </div>
                         <div className="text-center">
@@ -156,7 +161,6 @@ const ChatBox = ({ currentChat, currentUser, socket }) => {
                       />
                     </div>
                   </div> */}
-
                 </div>
               </div>
             </div>
