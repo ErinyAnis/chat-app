@@ -38,7 +38,7 @@ const Chat = () => {
 
   useEffect(() => {
     if (currentUser) {
-      socket.current = io(host, { transports: ["websocket"] });
+      socket.current = io(host, { transports: ["polling"] });
       socket.current.emit("add-user", currentUser._id);
 
       return () => {
