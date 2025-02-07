@@ -4,7 +4,7 @@ import ChatLeftSidebar from "../components/ChatLeftSidebar/ChatLeftSidebar";
 import ChatRightSideBar from "../components/ChatRightSideBar/ChatRightSideBar";
 import Container from "../components/Container";
 import Welcome from "../components/Welcome";
-import { host } from "../utils/APIRoutes";
+// import { host } from "../utils/APIRoutes";
 import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
 
@@ -38,7 +38,7 @@ const Chat = () => {
 
   useEffect(() => {
     if (currentUser) {
-      socket.current = io(host, { transports: ["polling"] });
+      socket.current = io("https://chat-app-backend-gilt.vercel.app", { transports: ["websocket"] });
       socket.current.emit("add-user", currentUser._id);
 
       return () => {
