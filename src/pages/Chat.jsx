@@ -29,12 +29,8 @@ const Chat = () => {
     checkUser();
   }, []);
 
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     socket.current = io(host);
-  //     socket.current.emit("add-user", currentUser._id);
-  //   }
-  // }, [currentUser]);
+  const host = "wss://chat-app-backend-gilt.vercel.app"; 
+
 
   useEffect(() => {
     if (currentUser) {
